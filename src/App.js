@@ -1,19 +1,19 @@
-import Menu from "./component/Menu";
-import { Navbar, NavbarBrand } from "reactstrap";
-import { DISHES } from "./shared/dishes";
-// import './App.css';
+import Header from "./component/HeaderComponent";
+import Footer from "./component/FooterComponent";
+import MainComponent from "./component/MainComponent";
+import { BrowserRouter } from "react-router-dom";
+import "./App.css";
 
 function App() {
   return (
     <>
-      <Navbar dark={true} color="primary">
-        <div className="container d-flex align-self-center">
-          <NavbarBrand>
-            <h1>Ristorante Con Fusion</h1>
-          </NavbarBrand>
+      <BrowserRouter>
+        <div className="App">
+          <Header />
+          <MainComponent />
+          <Footer />
         </div>
-      </Navbar>
-      <Menu dishes={DISHES} />
+      </BrowserRouter>
     </>
   );
 }

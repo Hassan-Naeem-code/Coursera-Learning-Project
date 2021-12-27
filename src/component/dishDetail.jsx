@@ -8,9 +8,6 @@ import {
 } from "reactstrap";
 
 export default class DishDetail extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     const { dish } = this.props;
     return (
