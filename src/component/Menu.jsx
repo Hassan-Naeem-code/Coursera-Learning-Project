@@ -1,40 +1,27 @@
 import React, { Component } from "react";
-import { Card, CardImg, CardImgOverlay, CardTitle } from "reactstrap";
-import DishDetail from "./dishDetail";
-import Comments from "./comments";
+import {
+  Card,
+  CardImg,
+  CardImgOverlay,
+  CardTitle,
+  Breadcrumb,
+  BreadcrumbItem,
+} from "reactstrap";
+import { Link } from "react-router-dom";
 export default class Menu extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      selectedDish: null,
-    };
-  }
-
-  onDishSelect(dish) {
-    this.setState({ selectedDish: dish });
-  }
-
-  renderDish(dish) {
-    if (dish != null) return <DishDetail dish={dish} />;
-    else return <div>No Selected Item Found To Show Its Detail</div>;
-  }
-  renderComments(comments) {
-    if (comments != null) return <Comments comments={comments} />;
-    else return <div></div>;
-  }
-
   render() {
-    const menu = this.props.dishes.map((dish) => {
+    const menu = this.props.dishes.map((dish,index) => {
       return (
-        <div className="col-12 col-md-5 m-1">
-          <Card key={dish.id} onClick={() => this.onDishSelect(dish)}>
-            <CardImg width="100%" src={dish.image} alt={dish.name} />
-            <CardImgOverlay>
-              <CardTitle>
-                <h3>{dish.name}</h3>
-              </CardTitle>
-            </CardImgOverlay>
+        <div className="col-12 col-md-5 m-1" key={index}>
+          <Card key={dish.id}>
+            <Link to={`/menu/${dish.id}`}>
+              <CardImg width="100%" src={dish.image} alt={dish.name} />
+              <CardImgOverlay>
+                <CardTitle>
+                  <h3>{dish.name}</h3>
+                </CardTitle>
+              </CardImgOverlay>
+            </Link>
           </Card>
         </div>
       );
@@ -42,15 +29,19 @@ export default class Menu extends Component {
 
     return (
       <div className="container">
-        <div className="row">{menu}</div>
         <div className="row">
-          <div className="col-12 col-md-5 m-1">
-            {this.renderDish(this.state.selectedDish)}
-          </div>
-          <div className="col-12 col-md-5 m-1">
-            {this.renderComments(this.state.selectedDish)}
+          <Breadcrumb>
+            <BreadcrumbItem>
+              <Link to="/home">Home</Link>
+            </BreadcrumbItem>
+            <BreadcrumbItem active>Menu</BreadcrumbItem>
+          </Breadcrumb>
+          <div className="col-12">
+            <h3>Menu</h3>
+            <hr />
           </div>
         </div>
+        <div className="row">{menu}</div>
       </div>
     );
   }
