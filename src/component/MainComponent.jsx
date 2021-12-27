@@ -3,6 +3,7 @@ import Header from "./HeaderComponent";
 import Footer from "./FooterComponent";
 import Home from "./HomeComponent";
 import Menu from "./Menu";
+import AboutComponent from "./AboutComponent";
 import DishDetail from "./dishDetail";
 import { ContactComponent } from "./ContactComponent";
 import { DISHES } from "../shared/dishes";
@@ -28,6 +29,7 @@ export default class MainComponent extends Component {
           />
           <Route exact path="/menu" element={<Menu dishes={DISHES} />} />
           <Route path="/menu/:id" element={<DishDetail />} />
+          <Route path="/aboutus" element={<AboutComponent leaders={LEADERS} />} />
           <Route path="/contactus" element={<ContactComponent />} />
           <Route
             path="*"
