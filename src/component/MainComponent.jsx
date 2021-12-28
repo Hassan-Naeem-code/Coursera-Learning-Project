@@ -5,7 +5,7 @@ import Home from "./HomeComponent";
 import Menu from "./Menu";
 import AboutComponent from "./AboutComponent";
 import DishDetail from "./dishDetail";
-import { ContactComponent } from "./ContactComponent";
+import ContactComponent from "./ContactComponent";
 import { DISHES } from "../shared/dishes";
 import { LEADERS } from "../shared/leaders";
 import { PROMOTIONS } from "../shared/promotions";
