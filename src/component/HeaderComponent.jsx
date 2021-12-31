@@ -65,7 +65,7 @@ class Header extends Component {
                 alt="Ristorante Con Fusion"
               />
             </NavbarBrand>
-            <Collapse isOpen={this.state.isNavOpen} navbar>
+            <Collapse isOpen={this.state.isNavOpen} navbar className="justify-content-between">
               <Nav navbar>
                 <NavItem>
                   <NavLink className="nav-link" to="/">
