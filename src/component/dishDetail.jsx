@@ -11,6 +11,7 @@ import {
 } from "reactstrap";
 import { Link, useParams } from "react-router-dom";
 import Comments from "./comments";
+import CommentForm from './CommentForm';
 import { DISHES } from "../shared/dishes";
 import { COMMENTS } from "../shared/comments";
 
@@ -63,6 +64,7 @@ const DishDetail = () => {
         </div>
         <div className="col-12 col-md-5 m-1">
           <Comments comments={AllComments} />
+          <CommentForm />
         </div>
       </div>
     </div>
