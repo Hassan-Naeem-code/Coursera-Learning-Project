@@ -10,14 +10,14 @@ import { Routes, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const MainComponent = () => {
-  const dishes = useSelector(({ storage }) => {
-    return storage.dishes;
+  const dishes = useSelector(({ dishesStorage }) => {
+    return dishesStorage.dishes;
   });
-  const leaders = useSelector(({ storage }) => {
-    return storage.leaders;
+  const leaders = useSelector(({ leadersStorage }) => {
+    return leadersStorage.leaders;
   });
-  const promotions = useSelector(({ storage }) => {
-    return storage.promotions;
+  const promotions = useSelector(({ promotionsStorage }) => {
+    return promotionsStorage.promotions;
   });
   console.log('dishes',dishes);
   console.log('leaders',leaders);

@@ -1,5 +1,9 @@
-import {combineReducers} from 'redux';
-import Storage from './datastorage';
+import { combineReducers } from "redux";
+import Dishes from "./dishes";
+import Leaders from "./leaders";
+import Promotions from "./promotions";
 export default combineReducers({
-  storage: Storage
+  dishesStorage: Dishes,
+  leadersStorage: Leaders,
+  promotionsStorage: Promotions,
 });
