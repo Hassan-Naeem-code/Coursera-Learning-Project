@@ -10,12 +10,15 @@ import {
   BreadcrumbItem,
 } from "reactstrap";
 import { Link, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 import Comments from "./comments";
-import CommentForm from './CommentForm';
-import { DISHES } from "../shared/dishes";
-import { COMMENTS } from "../shared/comments";
+import CommentForm from "./CommentForm";
 
 const DishDetail = () => {
+  const dishes = useSelector(({ dishesStorage }) => dishesStorage.dishes);
+  const commentsGet = useSelector(({ commentsStorage }) => {
+    return commentsStorage.comments;
+  });
   let [Dishes, setDishes] = useState([]);
   let [AllComments, setAllComments] = useState([]);
   let params = useParams();
@@ -33,15 +36,16 @@ const DishDetail = () => {
       </Card>
     );
   };
+  console.log("comments>>>>", commentsGet);
   useEffect(() => {
-    let dishes = DISHES.filter(
+    let dishesFiltered = dishes.filter(
       (dish) => dish.id === parseInt(params.id, 10)
     )[0];
-    let comments = COMMENTS.filter(
-      (comment) => comment.dishId === parseInt(params.id, 10)
-    );
-    setDishes(dishes);
-    setAllComments(comments);
+    // let commentsFiltered = comments.filter(
+    //   (comment) => comment.dishId === parseInt(params.id, 10)
+    // );
+    setDishes(dishesFiltered);
+    // setAllComments(commentsFiltered);
   }, [params.id]);
   return (
     <div className="container">
@@ -64,7 +68,7 @@ const DishDetail = () => {
         </div>
         <div className="col-12 col-md-5 m-1">
           <Comments comments={AllComments} />
-          <CommentForm />
+          <CommentForm dishId={params.id} />
         </div>
       </div>
     </div>
