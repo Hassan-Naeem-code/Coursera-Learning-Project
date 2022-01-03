@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Row,
   Col,
@@ -9,28 +9,19 @@ import {
   Label,
 } from "reactstrap";
 import { Control, LocalForm, Errors } from "react-redux-form";
-import { useDispatch } from "react-redux";
-import { submitCommentsData } from "../Store/actions/commentsstorageaction";
 
 const required = (val) => val && val.length;
 const maxLength = (len) => (val) => !val || val.length <= len;
 const minLength = (len) => (val) => val && val.length >= len;
 
-const CommentForm = ({ dishId }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const dispatch = useDispatch();
-  const toggleModal = () => {
-    setIsModalOpen(!isModalOpen);
-  };
+const CommentForm = ({ dishId, submit, toggleModal, isModalOpen }) => {
   const handleSubmit = (values) => {
-    console.log("Current State is: " + JSON.stringify(values));
     const commentObjectDispatch = JSON.parse(JSON.stringify(values));
     commentObjectDispatch["rating"] = Number(commentObjectDispatch["rating"]);
     commentObjectDispatch.id = parseInt(Math.random() * (3 - 0) + 0);
     commentObjectDispatch.dishId = Number(dishId);
     commentObjectDispatch.date = new Date().toISOString();
-    console.log("commentObjectDispatch", commentObjectDispatch);
-    dispatch(submitCommentsData(commentObjectDispatch));
+    submit(commentObjectDispatch);
     toggleModal();
   };
   return (

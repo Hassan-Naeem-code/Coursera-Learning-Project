@@ -7,6 +7,6 @@ import Promotions from "./promotions";
 export default combineReducers({
   dishesStorage: Dishes,
   leadersStorage: Leaders,
-  commentsStorage: Comments,
+  Comments: Comments,
   promotionsStorage: Promotions,
 });

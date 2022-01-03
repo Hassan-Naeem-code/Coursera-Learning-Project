@@ -10,14 +10,15 @@ import {
   BreadcrumbItem,
 } from "reactstrap";
 import { Link, useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Comments from "./comments";
 import CommentForm from "./CommentForm";
+import { submitCommentsData } from "../Store/actions/commentsstorageaction";
 
 const DishDetail = () => {
   const dishes = useSelector(({ dishesStorage }) => dishesStorage.dishes);
-  const commentsGet = useSelector(({ commentsStorage }) => {
-    return commentsStorage.comments;
+  const commentsGet = useSelector(({ Comments }) => {
+    return Comments.comments;
   });
   let [Dishes, setDishes] = useState([]);
   let [AllComments, setAllComments] = useState([]);
@@ -36,17 +37,32 @@ const DishDetail = () => {
       </Card>
     );
   };
-  console.log("comments>>>>", commentsGet);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const dispatch = useDispatch();
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen);
+  };
+  const handleSubmit = (commentObjectDispatch) => {
+    dispatch(submitCommentsData(commentObjectDispatch));
+    toggleModal();
+  };
+  console.log("commentsGet>>>>", commentsGet);
   useEffect(() => {
     let dishesFiltered = dishes.filter(
       (dish) => dish.id === parseInt(params.id, 10)
     )[0];
-    // let commentsFiltered = comments.filter(
-    //   (comment) => comment.dishId === parseInt(params.id, 10)
-    // );
+    let commentsFiltered = commentsGet.filter(
+      (comment) => comment.dishId === parseInt(params.id, 10)
+    );
     setDishes(dishesFiltered);
-    // setAllComments(commentsFiltered);
+    setAllComments(commentsFiltered);
   }, [params.id]);
+  useEffect(() => {
+    let commentsFiltered = commentsGet.filter(
+      (comment) => comment.dishId === parseInt(params.id, 10)
+    );
+    setAllComments(commentsFiltered);
+  }, [commentsGet]);
   return (
     <div className="container">
       <div className="row">
@@ -68,7 +84,12 @@ const DishDetail = () => {
         </div>
         <div className="col-12 col-md-5 m-1">
           <Comments comments={AllComments} />
-          <CommentForm dishId={params.id} />
+          <CommentForm
+            dishId={params.id}
+            submit={handleSubmit}
+            toggleModal={toggleModal}
+            isModalOpen={isModalOpen}
+          />
         </div>
       </div>
     </div>
