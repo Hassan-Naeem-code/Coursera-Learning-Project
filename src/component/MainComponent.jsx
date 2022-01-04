@@ -7,9 +7,11 @@ import AboutComponent from "./AboutComponent";
 import DishDetail from "./dishDetail";
 import ContactComponent from "./ContactComponent";
 import { Routes, Route } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { actions } from "react-redux-form";
 
 const MainComponent = () => {
+  const dispatch = useDispatch();
   const dishes = useSelector(({ dishesStorage }) => {
     return dishesStorage.dishes;
   });
@@ -19,9 +21,9 @@ const MainComponent = () => {
   const promotions = useSelector(({ promotionsStorage }) => {
     return promotionsStorage.promotions;
   });
-  console.log('dishes',dishes);
-  console.log('leaders',leaders);
-  console.log('promotions',promotions);
+  const resetFeedbackForm = () => {
+    dispatch(actions.reset("feedback"));
+  };
   return (
     <>
       <Header />
@@ -39,7 +41,10 @@ const MainComponent = () => {
         <Route exact path="/menu" element={<Menu dishes={dishes} />} />
         <Route path="/menu/:id" element={<DishDetail />} />
         <Route path="/aboutus" element={<AboutComponent leaders={leaders} />} />
-        <Route path="/contactus" element={<ContactComponent />} />
+        <Route
+          path="/contactus"
+          element={<ContactComponent resetFeedbackForm={resetFeedbackForm} />}
+        />
         <Route
           path="*"
           element={
