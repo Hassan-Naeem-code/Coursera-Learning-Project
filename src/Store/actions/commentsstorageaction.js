@@ -58,6 +58,22 @@ export const addPromos = (promos) => ({
   type: ADD_PROMOS,
   payload: promos,
 });
+export const addPromos = (promos) => ({
+  type: ADD_PROMOS,
+  payload: promos,
+});
+export const addPromos = (promos) => ({
+  type: ADD_PROMOS,
+  payload: promos,
+});
+export const addPromos = (promos) => ({
+  type: ADD_PROMOS,
+  payload: promos,
+});
+export const addPromos = (promos) => ({
+  type: ADD_PROMOS,
+  payload: promos,
+});
 
 
 // return fetch(baseUrl + 'dishes')
