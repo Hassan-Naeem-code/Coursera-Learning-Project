@@ -16,11 +16,11 @@ export function submitCommentsData(user_comment) {
   };
 }
 
-export const fetchDishes = ()=> (dispatch) => {
-  return fetch(baseUrl + 'dishes')
-  .then(response => response.json())
-  .then(dishes => dispatch(addDishes(dishes)));
-}
+export const fetchDishes = () => (dispatch) => {
+  return fetch(baseUrl + "dishes")
+    .then((response) => response.json())
+    .then((dishes) => dispatch(addDishes(dishes)));
+};
 export const fetchComments = () => (dispatch) => {
   return fetch(baseUrl + "comments")
     .then((response) => response.json())
@@ -82,7 +82,14 @@ export const addPromos = (promos) => ({
   type: ADD_PROMOS,
   payload: promos,
 });
-
+export const addPromos = (promos) => ({
+  type: ADD_PROMOS,
+  payload: promos,
+});
+export const addPromos = (promos) => ({
+  type: ADD_PROMOS,
+  payload: promos,
+});
 
 // return fetch(baseUrl + 'dishes')
 // .then(response => {
@@ -118,4 +125,3 @@ export const addPromos = (promos) => ({
 // .then(response => response.json())
 // .then(dishes => dispatch(addDishes(dishes)))
 // .catch(error => dispatch(dishesFailed(error.message)));
-
