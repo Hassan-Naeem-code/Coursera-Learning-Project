@@ -14,6 +14,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Comments from "./comments";
 import CommentForm from "./CommentForm";
 import { submitCommentsData } from "../Store/actions/commentsstorageaction";
+import { FadeTransform, Stagger } from "react-animation-components";
 
 const DishDetail = () => {
   const dishes = useSelector(({ dishesStorage }) => dishesStorage.dishes);
@@ -25,16 +26,23 @@ const DishDetail = () => {
   let params = useParams();
   const RenderDish = ({ dish }) => {
     return (
-      <Card>
-        <CardImg src={dish.image} alt={dish.name} />
-        <CardBody>
-          <CardTitle>{dish.name}</CardTitle>
-          {dish.designation ? (
-            <CardSubtitle>{dish.designation}</CardSubtitle>
-          ) : null}
-          <CardText>{dish.description}</CardText>
-        </CardBody>
-      </Card>
+      <FadeTransform
+        in
+        transformProps={{
+          exitTransform: "scale(0.5) translateY(-50%)",
+        }}
+      >
+        <Card>
+          <CardImg src={dish.image} alt={dish.name} />
+          <CardBody>
+            <CardTitle>{dish.name}</CardTitle>
+            {dish.designation ? (
+              <CardSubtitle>{dish.designation}</CardSubtitle>
+            ) : null}
+            <CardText>{dish.description}</CardText>
+          </CardBody>
+        </Card>
+      </FadeTransform>
     );
   };
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -83,7 +91,9 @@ const DishDetail = () => {
           <RenderDish dish={Dishes} />
         </div>
         <div className="col-12 col-md-5 m-1">
-          <Comments comments={AllComments} />
+          <Stagger in>
+            <Comments comments={AllComments} />
+          </Stagger>
           <CommentForm
             dishId={params.id}
             submit={handleSubmit}
