@@ -8,14 +8,19 @@ import {
   BreadcrumbItem,
 } from "reactstrap";
 import { Link } from "react-router-dom";
+import { baseUrl } from "../shared/baseUrl";
 export default class Menu extends Component {
   render() {
-    const menu = this.props.dishes.map((dish,index) => {
+    const menu = this.props.dishes.map((dish, index) => {
       return (
         <div className="col-12 col-md-5 m-1" key={index}>
           <Card key={dish.id}>
             <Link to={`/menu/${dish.id}`}>
-              <CardImg width="100%" src={dish.image} alt={dish.name} />
+              <CardImg
+                width="100%"
+                src={"assets/" + dish.image}
+                alt={dish.name}
+              />
               <CardImgOverlay>
                 <CardTitle>
                   <h3>{dish.name}</h3>

@@ -8,6 +8,7 @@ import {
   CardSubtitle,
 } from "reactstrap";
 import { FadeTransform } from "react-animation-components";
+import { baseUrl } from "../shared/baseUrl";
 
 function RenderCard({ item }) {
   return (
@@ -18,7 +19,7 @@ function RenderCard({ item }) {
       }}
     >
       <Card>
-        <CardImg src={item.image} alt={item.name} />
+        <CardImg src={"assets/" + item.image} alt={item.name} />
         <CardBody>
           <CardTitle>{item.name}</CardTitle>
           {item.designation ? (

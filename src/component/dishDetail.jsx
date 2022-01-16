@@ -33,7 +33,7 @@ const DishDetail = () => {
         }}
       >
         <Card>
-          <CardImg src={dish.image} alt={dish.name} />
+          <CardImg src={"/assets/" + dish.image} alt={dish.name} />
           <CardBody>
             <CardTitle>{dish.name}</CardTitle>
             {dish.designation ? (

@@ -12,32 +12,43 @@ import {
   CardSubtitle,
 } from "reactstrap";
 import { Link } from "react-router-dom";
+import { baseUrl } from "../shared/baseUrl";
+import { FadeTransform, Stagger } from "react-animation-components";
 
 function About(props) {
   const leaders = props.leaders.map((item, index) => {
     return (
       <div className="row" key={index}>
         <div className="col-12 col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <div className="row mb-3">
-            <div className="col-3 col-xs-3 col-sm-3 col-md-3 col-lg-3 d-flex justify-content-center align-items-center">
-              <CardImg
-                src={item.image}
-                alt={item.name}
-                className="img-responsive w-100 h-300"
-              />
-            </div>
-            <div className="col-9 col-xs-9 col-sm-9 col-md-9 col-lg-9">
-              <CardBody>
-                <CardTitle className="fs-4 fw-bold">{item.name}</CardTitle>
-                {item.designation ? (
-                  <CardSubtitle className="fw-normal mb-1">
-                    {item.designation}
-                  </CardSubtitle>
-                ) : null}
-                <CardText>{item.description}</CardText>
-              </CardBody>
-            </div>
-          </div>
+          <FadeTransform
+            in
+            transformProps={{
+              exitTransform: "scale(0.5) translateY(-50%)",
+            }}
+          >
+            <Stagger in>
+              <div className="row mb-3">
+                <div className="col-3 col-xs-3 col-sm-3 col-md-3 col-lg-3 d-flex justify-content-center align-items-center">
+                  <CardImg
+                    src={"assets/" + item.image}
+                    alt={item.name}
+                    className="img-responsive w-100 h-300"
+                  />
+                </div>
+                <div className="col-9 col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                  <CardBody>
+                    <CardTitle className="fs-4 fw-bold">{item.name}</CardTitle>
+                    {item.designation ? (
+                      <CardSubtitle className="fw-normal mb-1">
+                        {item.designation}
+                      </CardSubtitle>
+                    ) : null}
+                    <CardText>{item.description}</CardText>
+                  </CardBody>
+                </div>
+              </div>
+            </Stagger>
+          </FadeTransform>
         </div>
       </div>
     );
